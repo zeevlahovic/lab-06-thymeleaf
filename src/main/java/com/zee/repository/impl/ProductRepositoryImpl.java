@@ -1,7 +1,7 @@
-package com.cydeo.repository.impl;
+package com.zee.repository.impl;
 
-import com.cydeo.model.Product;
-import com.cydeo.repository.ProductRepository;
+import com.zee.model.Product;
+import com.zee.repository.ProductRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

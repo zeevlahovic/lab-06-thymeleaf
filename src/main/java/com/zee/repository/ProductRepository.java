@@ -1,7 +1,7 @@
-package com.cydeo.repository;
+package com.zee.repository;
 
 
-import com.cydeo.model.Product;
+import com.zee.model.Product;
 
 import java.util.List;
 import java.util.UUID;

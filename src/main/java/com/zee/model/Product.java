@@ -1,4 +1,4 @@
-package com.cydeo.model;
+package com.zee.model;
 
 import lombok.Getter;
 import lombok.Setter;

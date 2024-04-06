@@ -1,8 +1,8 @@
-package com.cydeo.service.impl;
+package com.zee.service.impl;
 
-import com.cydeo.model.Cart;
-import com.cydeo.service.CartService;
-import com.cydeo.service.ProductService;
+import com.zee.model.Cart;
+import com.zee.service.CartService;
+import com.zee.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

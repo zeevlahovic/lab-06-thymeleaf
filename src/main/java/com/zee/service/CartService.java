@@ -1,7 +1,7 @@
-package com.cydeo.service;
+package com.zee.service;
 
 
-import com.cydeo.model.Cart;
+import com.zee.model.Cart;
 
 import java.util.UUID;
 
