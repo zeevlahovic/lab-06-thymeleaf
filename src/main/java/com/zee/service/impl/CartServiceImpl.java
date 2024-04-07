@@ -30,7 +30,7 @@ public class CartServiceImpl implements CartService {
         cartItem.setQuantity(product.getRemainingQuantity());
         cartItem.setTotalAmount(product.getPrice().multiply(BigDecimal.valueOf(quantity)));
         CART.getCartItemList().add(cartItem);
-        CART.g
+
         //todo add to cart
         return CART;
     }
