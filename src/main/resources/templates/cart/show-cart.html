@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <h2 th:if="${cartItemList.isEmpty()}">No Added Product Yet!</h2>  <!-- todo check cart item list size, if it is 0, it always print No Added Product Yet-->
             <h3> Cart Total Amount</h3>
-            <td ></td>  <!-- todo put cart total amount cart.getCartTotalAmount()-->
+            <td th:text="${cart.getCartTotalAmount()}"></td>  <!-- todo put cart total amount cart.getCartTotalAmount()-->
 
             <div th:unless="${cartItemList.isEmpty()}"> <!-- todo check cart item list size, if it is NOT 0, it will show added products-->
                 <h2 class="my-5"></h2>

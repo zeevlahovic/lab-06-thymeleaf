@@ -21,6 +21,7 @@ public class CartController {
     public String seeProductList(Model model){
 
         model.addAttribute("cartItemList", CART.getCartItemList());
+        model.addAttribute("cart", CART);
 
         return "/cart/show-cart";
     }
