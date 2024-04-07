@@ -1,6 +1,8 @@
 package com.zee.service.impl;
 
 import com.zee.model.Cart;
+import com.zee.model.CartItem;
+import com.zee.model.Product;
 import com.zee.service.CartService;
 import com.zee.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -22,9 +24,13 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart addToCart(UUID productId, Integer quantity) {
-        //todo find product based on productId
-        //todo initialise cart item using the found product
-        //todo calculate cart total amount
+        Product product = productService.findProductById(productId);
+        CartItem cartItem = new CartItem();
+        cartItem.setProduct(product);
+        cartItem.setQuantity(product.getRemainingQuantity());
+        cartItem.setTotalAmount(product.getPrice().multiply(BigDecimal.valueOf(quantity)));
+        CART.getCartItemList().add(cartItem);
+        CART.g
         //todo add to cart
         return CART;
     }

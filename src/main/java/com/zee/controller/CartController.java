@@ -6,9 +6,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class CartController {
 
-    public String showCart(){
+    public String seeCart() {
 
 
-return "/cart/show-cart";
+
+        return "/cart/show-cart";
     }
 }
