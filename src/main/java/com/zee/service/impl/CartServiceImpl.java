@@ -1,13 +1,17 @@
 package com.zee.service.impl;
 
 import com.zee.model.Cart;
+import com.zee.model.CartItem;
+import com.zee.model.Product;
 import com.zee.service.CartService;
 import com.zee.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -22,16 +26,23 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart addToCart(UUID productId, Integer quantity) {
-        //todo find product based on productId
-        //todo initialise cart item using the found product
-        //todo calculate cart total amount
-        //todo add to cart
+        Product product = productService.findProductById(productId);
+        CartItem cartItem = new CartItem();
+        cartItem.setProduct(product);
+        cartItem.setQuantity(quantity);
+        cartItem.setTotalAmount(product.getPrice().multiply(BigDecimal.valueOf(quantity)));
+        CART.getCartItemList().add(cartItem);
+        CART.setCartTotalAmount(CART.getCartTotalAmount().add(cartItem.getTotalAmount()));
         return CART;
     }
 
     @Override
     public boolean deleteFromCart(UUID productId) {
-        //todo delete product object from cart using stream
-        return true;
+        CartItem itemToRemove = CART.getCartItemList().stream()
+                .filter(cartItem -> cartItem.getProduct().getId().equals(productId))
+                .findFirst().orElseThrow();
+        CART.setCartTotalAmount(CART.getCartTotalAmount().subtract(itemToRemove.getTotalAmount()));
+       return CART.getCartItemList().remove(itemToRemove);
+
     }
 }
