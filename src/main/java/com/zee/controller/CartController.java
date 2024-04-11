@@ -5,6 +5,10 @@ import com.zee.service.CartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.UUID;
 
 import static com.zee.service.impl.CartServiceImpl.CART;
 
@@ -18,7 +22,7 @@ public class CartController {
     }
 
     @GetMapping("/cart")
-    public String seeProductList(Model model){
+    public String seeProductList(Model model) {
 
         model.addAttribute("cartItemList", CART.getCartItemList());
         model.addAttribute("cart", CART);
@@ -26,5 +30,10 @@ public class CartController {
         return "/cart/show-cart";
     }
 
+    @GetMapping("/addToCart/{productId}/{quantity}")
+    public String addToCart(@PathVariable UUID productId, @PathVariable Integer quantity) {
+        cartService.addToCart(productId, quantity);
 
+        return "redirect:/cart";
+    }
 }

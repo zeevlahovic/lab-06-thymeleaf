@@ -40,7 +40,7 @@ public class CartServiceImpl implements CartService {
     public boolean deleteFromCart(UUID productId) {
         CartItem itemToRemove = CART.getCartItemList().stream()
                 .filter(cartItem -> cartItem.getProduct().getId().equals(productId))
-                .findFirst().orElseThrow();
+                .findAny().orElseThrow();
         CART.setCartTotalAmount(CART.getCartTotalAmount().subtract(itemToRemove.getTotalAmount()));
        return CART.getCartItemList().remove(itemToRemove);
 
