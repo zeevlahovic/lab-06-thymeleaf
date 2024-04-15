@@ -25,24 +25,27 @@ public class ProductController {
     @GetMapping("/list")
     public String showProductList(Model model) {
 
-        model.addAttribute("productList",productService.listProducts());
+        model.addAttribute("productList", productService.listProducts());
 
-        return "/product/list";
+        return "product/list";
     }
+
     @GetMapping("/create-form")
-    public String createProductForm(Model model){
+    public String createProductForm(Model model) {
 
         model.addAttribute("product", new Product());
 
-        return "/product/create-product";
+        return "product/create-product";
     }
 
-    @PostMapping("/create-form")
-    public String createProduct(@ModelAttribute Product product){
+    @PostMapping("/create-product")
+    public String createProduct(@ModelAttribute Product product, Model model) {
 
-        productRepository.save(product);
+        productService.productCreate(product);
+        // productRepository.save(product);
+        model.addAttribute("productList", productService.listProducts());
 
-        return "redirect:/list";
+        return "product/list";
     }
 
 }

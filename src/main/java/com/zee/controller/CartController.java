@@ -24,7 +24,6 @@ public class CartController {
     @GetMapping("/cart")
     public String seeProductList(Model model) {
 
-        model.addAttribute("cartItemList", CART.getCartItemList());
         model.addAttribute("cart", CART);
 
         return "/cart/show-cart";
@@ -36,6 +35,6 @@ public class CartController {
     public String addToCart(@PathVariable UUID productId, @PathVariable Integer quantity,Model model) {
         cartService.addToCart(productId, quantity);
         model.addAttribute("cart", CART);
-        return "/cart/show-cart";
+        return "cart/show-cart";
     }
 }
