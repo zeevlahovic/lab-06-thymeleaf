@@ -3,6 +3,7 @@ package com.zee.controller;
 
 import com.zee.model.Product;
 import com.zee.repository.ProductRepository;
+import com.zee.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +15,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProductController {
 
     private final ProductRepository productRepository;
+    private final ProductService productService;
 
-    public ProductController(ProductRepository productRepository) {
+    public ProductController(ProductRepository productRepository, ProductService productService) {
         this.productRepository = productRepository;
+        this.productService = productService;
     }
 
     @GetMapping("/list")
     public String showProductList(Model model) {
 
-        model.addAttribute("productList",productRepository.findAll());
+        model.addAttribute("productList",productService.listProducts());
 
         return "/product/list";
     }

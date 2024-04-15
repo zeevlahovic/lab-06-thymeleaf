@@ -30,9 +30,9 @@
                     </thead>
                     <tbody>
                     <tr th:each="product : ${productList}" > <!-- todo productList-->
-                        <td th:text="${product.name}"></td><!-- todo product variables-->
-                        <td th:text="${product.price}"></td><!-- todo product variables-->
-                        <td th:text="${product.remainingQuantity}"></td><!-- todo product variables-->
+                        <td th:text="${product.getName()}"></td><!-- todo product variables-->
+                        <td th:text="${product.getPrice()}"></td><!-- todo product variables-->
+                        <td th:text="${product.getRemainingQuantity()}"></td><!-- todo product variables-->
                         <td>
                             <a th:href="@{/addToCart/{productId}/{quantity}(productId=${product.id}, quantity=${product.remainingQuantity})}" class="btn btn-primary">Add Cart<i></i></a> <!-- todo a href with two path variables-->
                         </td>

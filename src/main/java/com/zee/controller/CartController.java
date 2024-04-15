@@ -33,9 +33,9 @@ public class CartController {
 
     //addCart
     @GetMapping("/addToCart/{productId}/{quantity}")
-    public String addToCart(@PathVariable UUID productId, @PathVariable Integer quantity) {
+    public String addToCart(@PathVariable UUID productId, @PathVariable Integer quantity,Model model) {
         cartService.addToCart(productId, quantity);
-
-        return "redirect:/cart";
+        model.addAttribute("cart", CART);
+        return "/cart/show-cart";
     }
 }

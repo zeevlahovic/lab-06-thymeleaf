@@ -21,20 +21,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean productCreate(Product product) {
-        productRepository.save(product);
-        return true;
+        product.setId(UUID.randomUUID());
+       return productRepository.save(product);
     }
 
     @Override
     public List<Product> listProducts() {
-        productRepository.findAll();
-        return new ArrayList<>();
+       return productRepository.findAll();
     }
 
     @Override
     public Product findProductById(UUID uuid) {
-        productRepository.findProductById(uuid);
-        return new Product();
+       return productRepository.findProductById(uuid);
+
     }
 
 }
