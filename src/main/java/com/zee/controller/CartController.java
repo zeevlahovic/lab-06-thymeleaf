@@ -42,7 +42,7 @@ public class CartController {
     @GetMapping("/delete/{productId}")
     public String deleteCart(@PathVariable UUID productId, Model model) {
         cartService.deleteFromCart(productId);
-        model.addAttribute("cart", CART);
-        return "cart/show-cart";
+
+        return "redirect:/cart";
     }
 }
