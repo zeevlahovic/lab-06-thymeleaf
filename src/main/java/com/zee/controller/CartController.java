@@ -2,6 +2,7 @@ package com.zee.controller;
 
 
 import com.zee.service.CartService;
+import com.zee.service.impl.CartServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,13 @@ public class CartController {
     @GetMapping("/addToCart/{productId}/{quantity}")
     public String addToCart(@PathVariable UUID productId, @PathVariable Integer quantity,Model model) {
         cartService.addToCart(productId, quantity);
+        model.addAttribute("cart", CART);
+        return "cart/show-cart";
+    }
+
+    @GetMapping("/delete/{productId}")
+    public String deleteCart(@PathVariable UUID productId, Model model) {
+        cartService.deleteFromCart(productId);
         model.addAttribute("cart", CART);
         return "cart/show-cart";
     }
